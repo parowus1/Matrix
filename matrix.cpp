@@ -132,3 +132,31 @@ matrix& diagonalna_k(int k, int* t) {
     }
     return *this;
 }
+
+matrix& kolumna(int x, int* t) {
+    for (int i = 0; i < size; ++i) {
+        data[i][x] = t[i];
+    }
+    return *this;
+}
+
+matrix& wiersz(int y, int* t) {
+    for (int j = 0; j < size; ++j) {
+        data[y][j] = t[j];
+    }
+    return *this;
+}
+
+matrix& przekatna() {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (i == j) {
+                data[i][j] = 1;
+            }
+            else {
+                data[i][j] = 0;
+            }
+        }
+    }
+    return *this;
+}

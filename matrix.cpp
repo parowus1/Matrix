@@ -104,3 +104,31 @@ matrix& losuj(int x) {
     }
     return *this;
 }
+
+matrix& diagonalna(int* t) {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (i == j) {
+                data[i][j] = t[i];
+            }
+            else {
+                data[i][j] = 0;
+            }
+        }
+    }
+    return *this;
+}
+
+matrix& diagonalna_k(int k, int* t) {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (i - j == k) {
+                data[i][j] = t[i];
+            }
+            else {
+                data[i][j] = 0;
+            }
+        }
+    }
+    return *this;
+}

@@ -64,3 +64,13 @@ matrix& wstaw(int x, int y, int wartosc) {
     }
     return *this;
 }
+
+int pokaz(int x, int y) {
+    if (x >= 0 && x < size && y >= 0 && y < size) {
+        return data[x][y];
+    }
+    else {
+        // Tu można dodać obsługę błędu
+        return -1;
+    }
+}

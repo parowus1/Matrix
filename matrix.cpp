@@ -84,3 +84,13 @@ matrix& dowroc() {
     }
     return *this = tmp;
 }
+
+matrix& losuj() {
+    srand(static_cast<unsigned>(time(nullptr)));
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            data[i][j] = rand() % 10;
+        }
+    }
+    return *this;
+}

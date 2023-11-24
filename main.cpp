@@ -11,3 +11,12 @@ int main() {
     matrix B(3);
     B.losuj();
     std::cout << "Macierz B:\n" << B << "\n";
+    
+    matrix C = A + B;
+    std::cout << "Suma macierzy A i B:\n" << C << "\n";
+
+    matrix D = A * B;
+    std::cout << "Iloczyn macierzy A i B:\n" << D << "\n";
+
+    return 0;
+}

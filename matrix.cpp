@@ -258,7 +258,6 @@ public:
         }
         return *this;
     }
-
     friend matrix operator+(int a, matrix &m)
     {
         // Tworzymy nową macierz, aby nie zmieniać oryginalnej
@@ -293,29 +292,38 @@ public:
         return *this;
     };
 
-        matrix& operator+(int a){
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            data[i][j] += a;
+    matrix &operator+(int a)
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                data[i][j] += a;
+            }
         }
-    }
-    return *this;
-};
+        return *this;
+    };
 
-    matrix& operator+(double a) {
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            data[i][j] += static_cast<int>(a); // Rzutujemy na int, aby zachować spójność z typem macierzy
+    matrix &operator+(double a)
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                data[i][j] += static_cast<int>(a); // Rzutujemy na int, aby zachować spójność z typem macierzy
+            }
         }
-    }
-    return *this;
-};
+        return *this;
+    };
 
-friend matrix operator*(int a, const matrix& m) {
+    friend matrix operator*(int a, const matrix &m)
+    {
         matrix result(m.size);
 
-        for (int i = 0; i < m.size; ++i) {
-            for (int j = 0; j < m.size; ++j) {
+        for (int i = 0; i < m.size; ++i)
+        {
+            for (int j = 0; j < m.size; ++j)
+            {
                 result.data[i][j] = a * m.data[i][j];
             }
         }
@@ -323,19 +331,26 @@ friend matrix operator*(int a, const matrix& m) {
         return result;
     }
 
- matrix operator*(const matrix& m) const {
-        if (size != m.size) {
+    matrix operator*(const matrix &m) const
+    {
+        if (size != m.size)
+        {
             // Handle the error: Matrices must have appropriate sizes for multiplication
             // You can throw an exception, return an error, or handle it differently
             // Here, return an empty matrix or another error representation
             return matrix(0);
-        } else {
+        }
+        else
+        {
             matrix result(size);
 
-            for (int i = 0; i < size; ++i) {
-                for (int j = 0; j < size; ++j) {
+            for (int i = 0; i < size; ++i)
+            {
+                for (int j = 0; j < size; ++j)
+                {
                     result.data[i][j] = 0;
-                    for (int k = 0; k < size; ++k) {
+                    for (int k = 0; k < size; ++k)
+                    {
                         result.data[i][j] += data[i][k] * m.data[k][j];
                     }
                 }
@@ -345,11 +360,14 @@ friend matrix operator*(int a, const matrix& m) {
         }
     }
 
-        matrix operator*(int a) const {
+    matrix operator*(int a) const
+    {
         matrix result(size);
 
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
                 result.data[i][j] = a * data[i][j];
             }
         }
@@ -357,83 +375,111 @@ friend matrix operator*(int a, const matrix& m) {
         return result;
     }
 
-    matrix& operator-(int a) const {
-    matrix result = *this;  // Create a new matrix to avoid modifying the original
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            result.data[i][j] -= a;
-        }
-    }
-    return result;
-}
+    // Przyjacielski operator mnożenia (stała * macierz)
 
-friend matrix operator-(const matrix& m, int a) {
-    matrix result = m;  // Create a new matrix to avoid modifying the original
-    for (int i = 0; i < m.size; ++i) {
-        for (int j = 0; j < m.size; ++j) {
-            result.data[i][j] = m.data[i][j] - a;
+    matrix &operator-(int a) const
+    {
+        matrix result = *this; // Create a new matrix to avoid modifying the original
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                result.data[i][j] -= a;
+            }
         }
+        return result;
     }
-    return result;
-}
 
-matrix& operator-=(int a) {
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            data[i][j] -= a;
+    friend matrix operator-(const matrix &m, int a)
+    {
+        matrix result = m; // Create a new matrix to avoid modifying the original
+        for (int i = 0; i < m.size; ++i)
+        {
+            for (int j = 0; j < m.size; ++j)
+            {
+                result.data[i][j] = m.data[i][j] - a;
+            }
         }
+        return result;
     }
-    return *this;
-}
 
- matrix operator++(int) {
+    matrix &operator-=(int a)
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                data[i][j] -= a;
+            }
+        }
+        return *this;
+    }
+
+    matrix operator++(int)
+    {
         matrix tmp(*this); // Create a copy of the current matrix
         // Increment each element in the matrix
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
                 data[i][j]++;
             }
         }
         return tmp; // Return the original matrix (before increment)
     }
 
-        matrix operator--(int) {
+    matrix operator--(int)
+    {
         matrix tmp(*this); // Create a copy of the current matrix
         // Decrement each element in the matrix
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
                 data[i][j]--;
             }
         }
         return tmp; // Return the original matrix (before decrement)
     }
 
-        matrix& operator+=(int a) {
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            data[i][j] += a;
+    matrix &operator+=(int a)
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                data[i][j] += a;
+            }
         }
+        return *this;
     }
-    return *this;
-}
 
-matrix& operator*=(int a) {
-    for (int i = 0; i < size; ++i) {
-        for (int j = 0; j < size; ++j) {
-            data[i][j] *= a;
+    matrix &operator*=(int a)
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                data[i][j] *= a;
+            }
         }
+        return *this;
     }
-    return *this;
-}
 
-    bool operator==(const matrix& m) {
-        if (size != m.size) {
+    bool operator==(const matrix &m)
+    {
+        if (size != m.size)
+        {
             return false;
         }
 
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                if (data[i][j] != m.data[i][j]) {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                if (data[i][j] != m.data[i][j])
+                {
                     return false;
                 }
             }
@@ -442,13 +488,16 @@ matrix& operator*=(int a) {
         return true;
     }
 
-    bool operator>(const matrix& m) {
+    bool operator>(const matrix &m)
+    {
         // Assuming a matrix is greater if the sum of its elements is greater
         int sumThis = 0;
         int sumOther = 0;
 
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
                 sumThis += data[i][j];
                 sumOther += m.data[i][j];
             }
@@ -457,4 +506,34 @@ matrix& operator*=(int a) {
         return sumThis > sumOther;
     }
 
+    bool operator<(const matrix &m)
+    {
+        // Assuming a matrix is smaller if the sum of its elements is smaller
+        int sumThis = 0;
+        int sumOther = 0;
+
+        for (int i = 0; i < size; ++i)
+        {
+            for (int j = 0; j < size; ++j)
+            {
+                sumThis += data[i][j];
+                sumOther += m.data[i][j];
+            }
+        }
+
+        return sumThis < sumOther;
+    }
+
+    friend std::ostream &operator<<(std::ostream &o, matrix &m)
+    {
+        for (int i = 0; i < m.size; ++i)
+        {
+            for (int j = 0; j < m.size; ++j)
+            {
+                o << m.data[i][j] << " ";
+            }
+            o << std::endl;
+        }
+        return o;
+    }
 };

@@ -74,3 +74,13 @@ int pokaz(int x, int y) {
         return -1;
     }
 }
+
+matrix& dowroc() {
+    matrix tmp(size);
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            tmp.data[i][j] = data[j][i];
+        }
+    }
+    return *this = tmp;
+}

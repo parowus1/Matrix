@@ -322,4 +322,28 @@ friend matrix operator*(int a, const matrix& m) {
 
         return result;
     }
+
+ matrix operator*(const matrix& m) const {
+        if (size != m.size) {
+            // Handle the error: Matrices must have appropriate sizes for multiplication
+            // You can throw an exception, return an error, or handle it differently
+            // Here, return an empty matrix or another error representation
+            return matrix(0);
+        } else {
+            matrix result(size);
+
+            for (int i = 0; i < size; ++i) {
+                for (int j = 0; j < size; ++j) {
+                    result.data[i][j] = 0;
+                    for (int k = 0; k < size; ++k) {
+                        result.data[i][j] += data[i][k] * m.data[k][j];
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
+
+
 };

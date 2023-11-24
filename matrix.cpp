@@ -188,3 +188,12 @@ matrix& nad_przekatna() {
     }
     return *this;
 }
+
+matrix& szachownica() {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            data[i][j] = (i + j) % 2;
+        }
+    }
+    return *this;
+}

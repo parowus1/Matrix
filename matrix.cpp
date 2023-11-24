@@ -367,5 +367,14 @@ friend matrix operator*(int a, const matrix& m) {
     return result;
 }
 
+friend matrix operator-(const matrix& m, int a) {
+    matrix result = m;  // Create a new matrix to avoid modifying the original
+    for (int i = 0; i < m.size; ++i) {
+        for (int j = 0; j < m.size; ++j) {
+            result.data[i][j] = m.data[i][j] - a;
+        }
+    }
+    return result;
+}
 
 };

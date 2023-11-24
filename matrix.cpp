@@ -291,7 +291,7 @@ friend matrix operator*(int a, const matrix& m) {
 
     // Przyjacielski operator mnożenia (stała * macierz)
 
-matrix& operator-(int a) const {
+matrix operator-(int a) const {
     matrix result = *this;  // Create a new matrix to avoid modifying the original
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
@@ -301,7 +301,7 @@ matrix& operator-(int a) const {
     return result;
 }
 
-friend matrix operator-(const matrix& m, int a) {
+friend matrix operator-(int a, const matrix& m) {
     matrix result = m;  // Create a new matrix to avoid modifying the original
     for (int i = 0; i < m.size; ++i) {
         for (int j = 0; j < m.size; ++j) {

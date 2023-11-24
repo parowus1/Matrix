@@ -94,3 +94,13 @@ matrix& losuj() {
     }
     return *this;
 }
+
+matrix& losuj(int x) {
+    srand(static_cast<unsigned>(time(nullptr)));
+    for (int k = 0; k < x; ++k) {
+        int i = rand() % size;
+        int j = rand() % size;
+        data[i][j] = rand() % 10;
+    }
+    return *this;
+}

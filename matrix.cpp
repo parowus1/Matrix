@@ -197,3 +197,24 @@ matrix& szachownica() {
     }
     return *this;
 }
+
+    matrix& operator+(matrix& m);
+    matrix& operator*(matrix& m);
+    matrix& operator+(int a);
+    matrix& operator*(int a);
+    matrix& operator-(int a);
+    friend matrix operator+(int a, matrix& m);
+    friend matrix operator*(int a, matrix& m);
+    friend matrix operator-(int a, matrix& m);
+    matrix& operator++(int);
+    matrix& operator--(int);
+    matrix& operator+=(int a);
+    matrix& operator-=(int a);
+    matrix& operator*=(int a);
+    matrix& operator+(double a);
+    friend std::ostream& operator<<(std::ostream& o, matrix& m);
+    bool operator==(const matrix& m);
+    bool operator>(const matrix& m);
+    bool operator<(const matrix& m);
+
+};

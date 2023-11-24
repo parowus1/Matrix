@@ -408,4 +408,13 @@ matrix& operator-=(int a) {
         return tmp; // Return the original matrix (before decrement)
     }
 
+        matrix& operator+=(int a) {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            data[i][j] += a;
+        }
+    }
+    return *this;
+}
+
 };

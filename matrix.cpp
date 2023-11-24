@@ -301,4 +301,13 @@ public:
     }
     return *this;
 };
+
+    matrix& operator+(double a) {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            data[i][j] += static_cast<int>(a); // Rzutujemy na int, aby zachować spójność z typem macierzy
+        }
+    }
+    return *this;
+};
 };

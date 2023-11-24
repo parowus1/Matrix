@@ -345,5 +345,17 @@ friend matrix operator*(int a, const matrix& m) {
         }
     }
 
+        matrix operator*(int a) const {
+        matrix result(size);
+
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                result.data[i][j] = a * data[i][j];
+            }
+        }
+
+        return result;
+    }
+
 
 };

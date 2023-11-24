@@ -57,3 +57,10 @@ matrix& alokuj(int n) {
 
     return *this;
 }
+
+matrix& wstaw(int x, int y, int wartosc) {
+    if (x >= 0 && x < size && y >= 0 && y < size) {
+        data[x][y] = wartosc;
+    }
+    return *this;
+}

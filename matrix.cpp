@@ -33,3 +33,27 @@ matrix(const matrix& m) : size(0), data(nullptr) {
         delete[] data;
     }
 }
+
+matrix& alokuj(int n) {
+    if (data != nullptr) {
+        if (size != n) {
+            for (int i = 0; i < size; ++i) {
+                delete[] data[i];
+            }
+            delete[] data;
+            size = 0;
+            data = nullptr;
+        }
+        else {
+            return *this;
+        }
+    }
+
+    size = n;
+    data = new int* [size];
+    for (int i = 0; i < size; ++i) {
+        data[i] = new int[size];
+    }
+
+    return *this;
+}

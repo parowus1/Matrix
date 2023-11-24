@@ -310,4 +310,16 @@ public:
     }
     return *this;
 };
+
+friend matrix operator*(int a, const matrix& m) {
+        matrix result(m.size);
+
+        for (int i = 0; i < m.size; ++i) {
+            for (int j = 0; j < m.size; ++j) {
+                result.data[i][j] = a * m.data[i][j];
+            }
+        }
+
+        return result;
+    }
 };

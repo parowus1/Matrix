@@ -160,3 +160,31 @@ matrix& przekatna() {
     }
     return *this;
 }
+
+matrix& pod_przekatna() {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (i > j) {
+                data[i][j] = 1;
+            }
+            else {
+                data[i][j] = 0;
+            }
+        }
+    }
+    return *this;
+}
+
+matrix& nad_przekatna() {
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (i < j) {
+                data[i][j] = 1;
+            }
+            else {
+                data[i][j] = 0;
+            }
+        }
+    }
+    return *this;
+}

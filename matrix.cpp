@@ -397,4 +397,15 @@ matrix& operator-=(int a) {
         return tmp; // Return the original matrix (before increment)
     }
 
+        matrix operator--(int) {
+        matrix tmp(*this); // Create a copy of the current matrix
+        // Decrement each element in the matrix
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                data[i][j]--;
+            }
+        }
+        return tmp; // Return the original matrix (before decrement)
+    }
+
 };

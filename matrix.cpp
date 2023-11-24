@@ -198,7 +198,7 @@ public:
         }
         return *this;
     }
-    
+
     friend matrix operator+(int a, matrix& m){
     // Tworzymy nową macierz, aby nie zmieniać oryginalnej
     matrix result = m;
@@ -209,4 +209,19 @@ public:
     }
     return result;
     };
+
+       matrix& operator+(matrix& m) {
+    if (size != m.size) {
+        // Obsługa błędu: Macierze muszą być tego samego rozmiaru
+        // Możesz wyrzucić wyjątek, zwrócić błąd lub inaczej obsłużyć tę sytuację
+    } else {
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                data[i][j] += m.data[i][j];
+            }
+        }
+    }
+    return *this;
+};
+
 };

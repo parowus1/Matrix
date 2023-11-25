@@ -1,4 +1,3 @@
-//#include "matrix.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -35,29 +34,45 @@ public:
         }
     }
 
-    matrix& alokuj(int n) {
-        if (data != nullptr) {
-            if (size != n) {
-                for (int i = 0; i < size; ++i) {
-                    delete[] data[i];
-                }
-                delete[] data;
-                size = 0;
-                data = nullptr;
-            }
-            else {
-                return *this;
-            }
-        }
-
+matrix& alokuj(int n) {
+    if (data == nullptr) {
+        // Macierz nie ma jeszcze zaalokowanej pamięci, alokuj ją w żądanym rozmiarze
         size = n;
-        data = new int* [size];
+        data = new int*[size];
         for (int i = 0; i < size; ++i) {
             data[i] = new int[size];
+            // Inicjowanie wartości elementów macierzy na zero
+            for (int j = 0; j < size; ++j) {
+                data[i][j] = 0;
+            }
         }
+    } else {
+        if (size != n) {
+            // Macierz ma zaalokowaną pamięć, ale inny rozmiar, zwolnij i zaalokuj ponownie
+            for (int i = 0; i < size; ++i) {
+                delete[] data[i];
+            }
+            delete[] data;
 
-        return *this;
+            size = n;
+            data = new int*[size];
+            for (int i = 0; i < size; ++i) {
+                data[i] = new int[size];
+                // Inicjowanie wartości elementów macierzy na zero
+                for (int j = 0; j < size; ++j) {
+                    data[i][j] = 0;
+                }
+            }
+        } else {
+            // Macierz ma zaalokowaną pamięć i jest odpowiedniego rozmiaru, nie rób nic
+            return *this;
+        }
     }
+
+    return *this;
+}
+
+
 
     matrix& wstaw(int x, int y, int wartosc) {
         if (x >= 0 && x < size && y >= 0 && y < size) {
@@ -76,15 +91,57 @@ public:
         }
     }
 
-    matrix& dowroc() {
-        matrix tmp(size);
+matrix& operator=(const matrix& m) {
+    if (this != &m) {
+        // Deallocate existing memory
+        for (int i = 0; i < size; ++i) {
+            delete[] data[i];
+        }
+        delete[] data;
+
+        // Allocate new memory
+        size = m.size;
+        data = new int*[size];
+        for (int i = 0; i < size; ++i) {
+            data[i] = new int[size];
+        }
+
+        // Copy data
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
-                tmp.data[i][j] = data[j][i];
+                data[i][j] = m.data[i][j];
             }
         }
-        return *this = tmp;
     }
+    return *this;
+}
+
+matrix& dowroc() {
+    matrix tmp(size);
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            tmp.data[j][i] = data[i][j];  // Swap indices to exchange columns with rows
+        }
+    }
+    return *this = tmp;
+}
+
+
+
+
+
+
+// matrix& dowroc() { // takie co odwraca kolumnami
+//     matrix tmp(size);
+//     for (int i = 0; i < size; ++i) {
+//         for (int j = 0; j < size; ++j) {
+//             tmp.data[i][j] = data[size - 1 - j][i];
+//         }
+//     }
+//     return *this = tmp;
+// }
+
+
 
     matrix& losuj() {
         srand(static_cast<unsigned>(time(nullptr)));
@@ -121,6 +178,7 @@ public:
     }
 
     matrix& diagonalna_k(int k, int* t) {
+        k=-k; //
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 if (i - j == k) {

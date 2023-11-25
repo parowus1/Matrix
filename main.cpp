@@ -59,312 +59,119 @@ int main() {
     m2.szachownica();
     std::cout << "\nM2 - uzupelnia pola w szachownice z cyfr 0 i 1 szachownica(): \n" << m2;
 
-//     std::cout<<"czy to wogole dziala1";
+    matrix t1(30);
+    t1.pod_przekatna();
+    matrix t2(30);
+    t2.nad_przekatna();
+    t1 = t1 + t2;
+    // t1 + t2 także działa i przypisuje wynik do t1
+    std::cout << "\nT1 - suma dwoch matryc, jednej stworzonej przez funkcje nad_przekatna, a druga przez funkcje pod_przekatna \n" << t1;
 
-//     matrix A(3);
-//         std::cout<<"czy to wogole d2ziala1";
+    matrix t3(30);
+    t3.losuj();
 
-//     A.alokuj(2);
-//     A.wstaw(1,2,3);
-//         std::cout<<"czy to wogol3e dziala1";
+    matrix t4(30);
+    t4.szachownica();
 
-//     A.pokaz(1,2);
-//     A.dowroc();
-//     A.losuj();
-//     A.losuj(3);
-//     int diagonalValues[] = {1, 2, 3};
- 
-// matrix m(3);
-//     m.szachownica();
-//     std::cout << "Original Matrix:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << m.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    t3 = t3 * t4;
+    std::cout << "\nT3 - iloczyn dwoch matryc, jednej z szachownica i drugiej z liczbami losowymi \n" << t3;
 
-//     // Wstawiamy wartości do kolumny
-//     int column_data[3] = {10, 11, 12};
-//     m.kolumna(1, column_data);
-//     std::cout << "\nMatrix after inserting column data:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << m.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t5(30);
+    t5.nad_przekatna();
+    t5 + 3;
+    std::cout << "\nT5 - matryca wypelniona jedynkami nad przekatna + 3\n" << t5;
 
-//     int row_data[3] = {20, 21, 22};
-//     m.wiersz(0, row_data);
-//     std::cout << "\nMatrix after inserting row data:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << m.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t6(30);
+    t6.nad_przekatna();
+    t6 = t6 * 3;
+    std::cout << "\nT6 - matryca wypelniona jedynkami nad przekatna * 3\n" << t6;
 
-//     matrix m1(3);
-//     m1.losuj();
-//     std::cout << "Matrix 1:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << m1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t7(30);
+    t7.nad_przekatna();
+    t7 = t7 - 1;
+    std::cout << "\nT7 - matryca wypelniona jedynkami nad przekatna - 1\n" << t7;
 
-//     matrix m2(3);
-//     m2.losuj(9);
-//     std::cout << "\nMatrix 2:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << m2.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t8(30);
+    t8.nad_przekatna();
+    t8 = 1 + t8;
+    std::cout << "\nT8 - 1 + matryca wypelniona jedynkami nad przekatna \n" << t8; 
 
-//     // Dodajemy dwie macierze
-//     m1 + m2;
-//     std::cout << "\nMatrix 1 + Matrix 2:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << m1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t9(30);
+    t9.nad_przekatna();
+    t9 = 3 * t9 ;
+    std::cout << "\nT9 - 3 * matryca wypelniona jedynkami nad przekatna\n" << t9; 
 
-//     // Dodajemy stałą do macierzy
-//     m1 + 5;
-//     std::cout << "\nMatrix 1 + 5:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << m1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-//     // Dodajemy macierz do stałej
-//     matrix result = 3 + m1;
-//     std::cout << "\n3 + Matrix 1:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << result.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-//     // Dodajemy liczbę rzeczywistą do macierzy
-//     m1 + 2.5;
-//     std::cout << "\nMatrix 1 + 2.5:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << m1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t10(30);
+    t10.nad_przekatna();
+    t10 = 1 - t10 ;
+    std::cout << "\nT10 - 1 - matryca wypelniona jedynkami nad przekatna\n" << t10; 
 
 
-//     matrix mc1(3);
-//     matrix mc2(3);
-//     mc1.losuj();
-//     mc2.losuj();
+    matrix t11(30);
+    t11.nad_przekatna();
+    //t11 = t11++; takie nie działa
+    t11++ ;
+    std::cout << "\nT11 - matryca wypelniona jedynkami nad przekatna ++\n" << t11; 
 
-//     // Matrix multiplication
-//     matrix mc3 = mc1 * mc2;
-//     std::cout << "Result of matrix multiplication:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << mc3.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-//         // Display values before multiplication by 5
-//     std::cout << "\nValues of mc1 before multiplication by 5:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << mc1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t12(30);
+    t12.nad_przekatna();
+    //t11 = t11-- takie nie działa
+    t12-- ;
+    std::cout << "\nT12 - matryca wypelniona jedynkami nad przekatna --\n" << t12; 
 
 
-//     // Multiplication by a constant
-//     matrix mc4 = mc1 * 5;
-//     std::cout << "\nResult of matrix multiplication by 5:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << mc4.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t13(30);
+    t13.nad_przekatna();
+    t13+=10 ;
+    std::cout << "\nT13 - matryca wypelniona jedynkami nad przekatna += 10\n" << t13; 
 
-//         // Display values before multiplication by 3
-//     std::cout << "\nValues of mc2 before multiplication by 3:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << mc2.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t14(30);
+    t14.nad_przekatna();
+    t14-=10 ;
+    std::cout << "\nT14 - matryca wypelniona jedynkami nad przekatna -= 10\n" << t14; 
 
+    matrix t15(30);
+    t15.nad_przekatna();
+    t15*=-1 ;
+    std::cout << "\nT15 - matryca wypelniona jedynkami nad przekatna *= -1\n" << t15; 
 
-//     // Friend multiplication operator (constant * matrix)
-//     matrix mc5 = 3 * mc2;
-//     std::cout << "\nResult of 3 times matrix multiplication:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << mc5.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    matrix t16(30);
+    t16.nad_przekatna();
+    t16 + 2.1231 ;
+    std::cout << "\nT16 - matryca wypelniona jedynkami nad przekatna + 2.1231 (double)\n" << t16; 
 
-//     const int size = 3;
-    
-//     int values[size * size] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-//     matrix mm1(size, values);
-//     mm1 -= 2;
+    matrix t17(30);
+    t17.nad_przekatna();
+    matrix t18(30);
+    t18.nad_przekatna();
+    std::cout << "\nCzy dwie rowne macierze sa rowne? T17 == T18\n";
+    if(t17 == t18) {
+        std::cout<<"TAK";
+    } else {
+        std::cout<<"NIE";
+    }
 
-//     // Using the friend subtraction operator
-//     matrix mm2 = mm1 - 3;
-//     std::cout<<"skompilowane";
-//         std::cout << "Values of mm1 after subtraction by 2:\n";
-//     for (int i = 0; i < size; ++i) {
-//         for (int j = 0; j < size; ++j) {
-//             std::cout << mm1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    std::cout << "\nDwie rowne macierze: Czy T17 > T18\n";
+    if(t17 > t18) {
+        std::cout<<"TAK";
+    } else {
+        std::cout<<"NIE";
+    }    
 
-//     // Display values of mm2 after subtraction
-//     std::cout << "\nValues of mm2 after subtraction by 3:\n";
-//     for (int i = 0; i < size; ++i) {
-//         for (int j = 0; j < size; ++j) {
-//             std::cout << mm2.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
+    t18.wstaw(0,0,-1);
+    std::cout << "\nDodanie jednego elementu mniejszego do T18: Czy T17 > T18\n";
+    if(t17 > t18) {
+        std::cout<<"TAK";
+    } else {
+        std::cout<<"NIE";
+    }
 
-
-
-//     matrix md1(3);
-//     matrix md2(3);
-//     matrix md3(3);
-
-//     // Perform some operations on matrices
-//     md1.losuj();
-//     md2.losuj();
-//     md3 = md1 + md2;
-
-//     // Display the original matrix
-//     std::cout << "Original Matrix:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << md1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-//     // Use post-increment operator
-//     matrix md4 = md1++;
-//     std::cout << "\nMatrix after post-increment:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << md1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-//     // Use post-decrement operator
-//     matrix md5 = md1--;
-//     std::cout << "\nMatrix after post-decrement:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << md1.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-
-
-
-
-//     matrix mcc(3);
-//     mcc.losuj(); // Losowe wypełnienie macierzy
-
-//     // Wyświetlenie pierwotnej macierzy
-//     std::cout << "Original matrix:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << mcc.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-//     // Testowanie operatora +=
-//     mcc += 5;
-
-//     // Wyświetlenie macierzy po dodaniu liczby
-//     std::cout << "\nMatrix after += 5:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << mcc.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-//     // Tworzenie nowej macierzy
-//     matrix mcc2(3);
-//     mcc2.losuj(); // Losowe wypełnienie drugiej macierzy
-
-//     // Testowanie operatora *=
-//     mcc2 *= 2;
-
-//     // Wyświetlenie drugiej macierzy po pomnożeniu przez 2
-//     std::cout << "\nMatrix after *= 2:\n";
-//     for (int i = 0; i < 3; ++i) {
-//         for (int j = 0; j < 3; ++j) {
-//             std::cout << mcc2.pokaz(i, j) << " ";
-//         }
-//         std::cout << "\n";
-//     }
-
-
-//         matrix d1(3, new int[9]{1, 2, 3, 4, 5, 6, 7, 8, 9});
-//     matrix d2(3, new int[9]{1, 2, 3, 4, 5, 6, 7, 8, 9});
-//     matrix d3(3, new int[9]{9, 8, 7, 6, 5, 4, 3, 2, 1, });
-
-//     if (d1 == d2) {
-//         std::cout << "d1 is equal to d2\n";
-//     } else {
-//         std::cout << "d1 is not equal to d2\n";
-//     }
-
-//     if (d1 > d3) {
-//         std::cout << "d1 is greater than d3\n";
-//     } else {
-//         std::cout << "d1 is not greater than d3\n";
-//     }
-
-//     if (d1 < d3) {
-//         std::cout << "d1 is smaller than d3\n";
-//     } else {
-//         std::cout << "d1 is not smaller than d3\n";
-//     }
-
-
-//         matrix myMatrix(3); // Tworzymy macierz 3x3
-//     myMatrix.losuj();   // Losujemy wartości dla macierzy
-
-//     // Wyświetlamy macierz za pomocą przeciążonego operatora <<
-//     std::cout << "Macierz myMatrix:" << std::endl << myMatrix;
-
-
-//     matrix mat(30);  // Tworzymy macierz 30x30
-//     mat.losuj();     // Losujemy wartości dla macierzy
-//     std::cout << mat; // Wyświetlamy macierz
+    std::cout << "\nMacierze takie jak w poprzednim: Czy T17 < T18\n";
+    if(t17 < t18) {
+        std::cout<<"TAK";
+    } else {
+        std::cout<<"NIE";
+    }  
 
     return 0;
 }

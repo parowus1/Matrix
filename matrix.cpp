@@ -1,40 +1,6 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include "matrix.h"
 
-class matrix {
-private:
-    int size;
-    int** data;
-
-public:
-    // Konstruktory i destruktor
-    matrix() : size(0), data(nullptr) {}
-    matrix(int n) : size(0), data(nullptr) {
-        alokuj(n);
-    }
-    matrix(int n, int* t) : size(0), data(nullptr) {
-        alokuj(n);
-        for (int i = 0; i < n * n; ++i) {
-            data[i / n][i % n] = t[i];
-        }
-    }
-    matrix(const matrix& m) : size(0), data(nullptr) {
-        alokuj(m.size);
-        for (int i = 0; i < size * size; ++i) {
-            data[i / size][i % size] = m.data[i / m.size][i % m.size];
-        }
-    }
-    ~matrix() {
-        if (data != nullptr) {
-            for (int i = 0; i < size; ++i) {
-                delete[] data[i];
-            }
-            delete[] data;
-        }
-    }
-
-matrix& alokuj(int n) {
+matrix& matrix::alokuj(int n) {
     if (data == nullptr) {
         // Macierz nie ma jeszcze zaalokowanej pamięci, alokuj ją w żądanym rozmiarze
         size = n;
@@ -72,16 +38,14 @@ matrix& alokuj(int n) {
     return *this;
 }
 
-
-
-    matrix& wstaw(int x, int y, int wartosc) {
+    matrix& matrix::wstaw(int x, int y, int wartosc) {
         if (x >= 0 && x < size && y >= 0 && y < size) {
             data[x][y] = wartosc;
         }
         return *this;
     }
 
-    int pokaz(int x, int y) {
+    int matrix::pokaz(int x, int y) {
         if (x >= 0 && x < size && y >= 0 && y < size) {
             return data[x][y];
         }
@@ -91,7 +55,7 @@ matrix& alokuj(int n) {
         }
     }
 
-matrix& operator=(const matrix& m) {
+    matrix& matrix::operator=(const matrix& m) {
     if (this != &m) {
         // Deallocate existing memory
         for (int i = 0; i < size; ++i) {
@@ -116,7 +80,7 @@ matrix& operator=(const matrix& m) {
     return *this;
 }
 
-matrix& dowroc() {
+matrix& matrix::dowroc() {
     matrix tmp(size);
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
@@ -126,24 +90,7 @@ matrix& dowroc() {
     return *this = tmp;
 }
 
-
-
-
-
-
-// matrix& dowroc() { // takie co odwraca kolumnami
-//     matrix tmp(size);
-//     for (int i = 0; i < size; ++i) {
-//         for (int j = 0; j < size; ++j) {
-//             tmp.data[i][j] = data[size - 1 - j][i];
-//         }
-//     }
-//     return *this = tmp;
-// }
-
-
-
-    matrix& losuj() {
+    matrix& matrix::losuj() {
         srand(static_cast<unsigned>(time(nullptr)));
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
@@ -153,7 +100,7 @@ matrix& dowroc() {
         return *this;
     }
 
-    matrix& losuj(int x) {
+        matrix& matrix::losuj(int x) {
         srand(static_cast<unsigned>(time(nullptr)));
         for (int k = 0; k < x; ++k) {
             int i = rand() % size;
@@ -163,7 +110,7 @@ matrix& dowroc() {
         return *this;
     }
 
-    matrix& diagonalna(int* t) {
+    matrix& matrix::diagonalna(int* t) {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 if (i == j) {
@@ -177,7 +124,7 @@ matrix& dowroc() {
         return *this;
     }
 
-    matrix& diagonalna_k(int k, int* t) {
+        matrix& matrix::diagonalna_k(int k, int* t) {
         k=-k; //
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
@@ -192,21 +139,21 @@ matrix& dowroc() {
         return *this;
     }
 
-    matrix& kolumna(int x, int* t) {
+        matrix& matrix::kolumna(int x, int* t) {
         for (int i = 0; i < size; ++i) {
             data[i][x] = t[i];
         }
         return *this;
     }
 
-    matrix& wiersz(int y, int* t) {
+    matrix& matrix::wiersz(int y, int* t) {
         for (int j = 0; j < size; ++j) {
             data[y][j] = t[j];
         }
         return *this;
     }
 
-    matrix& przekatna() {
+        matrix& matrix::przekatna() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 if (i == j) {
@@ -220,7 +167,7 @@ matrix& dowroc() {
         return *this;
     }
 
-    matrix& pod_przekatna() {
+    matrix& matrix::pod_przekatna() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 if (i > j) {
@@ -234,7 +181,7 @@ matrix& dowroc() {
         return *this;
     }
 
-    matrix& nad_przekatna() {
+        matrix& matrix::nad_przekatna() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 if (i < j) {
@@ -248,7 +195,7 @@ matrix& dowroc() {
         return *this;
     }
 
-    matrix& szachownica() {
+    matrix& matrix::szachownica() {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 data[i][j] = (i + j) % 2;
@@ -256,7 +203,8 @@ matrix& dowroc() {
         }
         return *this;
     }
-    friend matrix operator+(int a, matrix& m){
+
+    matrix operator+(int a, matrix& m){
     // Tworzymy nową macierz, aby nie zmieniać oryginalnej
     matrix result = m;
     for (int i = 0; i < m.size; ++i) {
@@ -267,7 +215,7 @@ matrix& dowroc() {
     return result;
 };
 
-    matrix& operator+(matrix& m) {
+    matrix& matrix::operator+(matrix& m) {
     if (size != m.size) {
         // Obsługa błędu: Macierze muszą być tego samego rozmiaru
         // Możesz wyrzucić wyjątek, zwrócić błąd lub inaczej obsłużyć tę sytuację
@@ -283,7 +231,7 @@ matrix& dowroc() {
 
 
 
-    matrix& operator+(int a){
+    matrix& matrix::operator+(int a){
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
             data[i][j] += a;
@@ -292,7 +240,7 @@ matrix& dowroc() {
     return *this;
 };
 
-    matrix& operator+(double a) {
+    matrix& matrix::operator+(double a) {
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
             data[i][j] += static_cast<int>(a); // Rzutujemy na int, aby zachować spójność z typem macierzy
@@ -301,7 +249,7 @@ matrix& dowroc() {
     return *this;
 };
 
-friend matrix operator*(int a, const matrix& m) {
+matrix operator*(int a, const matrix& m) {
         matrix result(m.size);
 
         for (int i = 0; i < m.size; ++i) {
@@ -313,7 +261,8 @@ friend matrix operator*(int a, const matrix& m) {
         return result;
     }
 
-    matrix operator*(const matrix& m) const {
+
+    matrix matrix::operator*(const matrix& m) const {
         if (size != m.size) {
             // Handle the error: Matrices must have appropriate sizes for multiplication
             // You can throw an exception, return an error, or handle it differently
@@ -335,7 +284,7 @@ friend matrix operator*(int a, const matrix& m) {
         }
     }
 
-    matrix operator*(int a) const {
+        matrix matrix::operator*(int a) const {
         matrix result(size);
 
         for (int i = 0; i < size; ++i) {
@@ -347,9 +296,7 @@ friend matrix operator*(int a, const matrix& m) {
         return result;
     }
 
-    // Przyjacielski operator mnożenia (stała * macierz)
-
-matrix operator-(int a) const {
+    matrix matrix::operator-(int a) const {
     matrix result = *this;  // Create a new matrix to avoid modifying the original
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
@@ -359,7 +306,7 @@ matrix operator-(int a) const {
     return result;
 }
 
-friend matrix operator-(int a, const matrix& m) {
+matrix operator-(int a, const matrix& m) {
     matrix result = m;  // Create a new matrix to avoid modifying the original
     for (int i = 0; i < m.size; ++i) {
         for (int j = 0; j < m.size; ++j) {
@@ -369,7 +316,7 @@ friend matrix operator-(int a, const matrix& m) {
     return result;
 }
 
-matrix& operator-=(int a) {
+matrix& matrix::operator-=(int a) {
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
             data[i][j] -= a;
@@ -378,7 +325,7 @@ matrix& operator-=(int a) {
     return *this;
 }
 
- matrix operator++(int) {
+ matrix matrix::operator++(int) {
         matrix tmp(*this); // Create a copy of the current matrix
         // Increment each element in the matrix
         for (int i = 0; i < size; ++i) {
@@ -389,7 +336,7 @@ matrix& operator-=(int a) {
         return tmp; // Return the original matrix (before increment)
     }
 
-    matrix operator--(int) {
+    matrix matrix::operator--(int) {
         matrix tmp(*this); // Create a copy of the current matrix
         // Decrement each element in the matrix
         for (int i = 0; i < size; ++i) {
@@ -400,7 +347,8 @@ matrix& operator-=(int a) {
         return tmp; // Return the original matrix (before decrement)
     }
 
-    matrix& operator+=(int a) {
+
+    matrix& matrix::operator+=(int a) {
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
             data[i][j] += a;
@@ -409,7 +357,7 @@ matrix& operator-=(int a) {
     return *this;
 }
 
-matrix& operator*=(int a) {
+matrix& matrix::operator*=(int a) {
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
             data[i][j] *= a;
@@ -418,7 +366,7 @@ matrix& operator*=(int a) {
     return *this;
 }
 
-    bool operator==(const matrix& m) {
+    bool matrix::operator==(const matrix& m) {
         if (size != m.size) {
             return false;
         }
@@ -434,7 +382,7 @@ matrix& operator*=(int a) {
         return true;
     }
 
-    bool operator>(const matrix& m) {
+    bool matrix::operator>(const matrix& m) {
         // Assuming a matrix is greater if the sum of its elements is greater
         int sumThis = 0;
         int sumOther = 0;
@@ -449,7 +397,7 @@ matrix& operator*=(int a) {
         return sumThis > sumOther;
     }
 
-    bool operator<(const matrix& m) {
+    bool matrix::operator<(const matrix& m) {
         // Assuming a matrix is smaller if the sum of its elements is smaller
         int sumThis = 0;
         int sumOther = 0;
@@ -464,8 +412,7 @@ matrix& operator*=(int a) {
         return sumThis < sumOther;
     }
 
-
-    friend std::ostream& operator<<(std::ostream& o, matrix& m) {
+    std::ostream& operator<<(std::ostream& o, matrix& m) {
     for (int i = 0; i < m.size; ++i) {
         for (int j = 0; j < m.size; ++j) {
             o << m.data[i][j] << " ";
@@ -475,5 +422,12 @@ matrix& operator*=(int a) {
     return o;
 }
 
-
-};
+// matrix& dowroc() { // takie co odwraca kolumnami
+//     matrix tmp(size);
+//     for (int i = 0; i < size; ++i) {
+//         for (int j = 0; j < size; ++j) {
+//             tmp.data[i][j] = data[size - 1 - j][i];
+//         }
+//     }
+//     return *this = tmp;
+// }

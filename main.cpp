@@ -1,4 +1,4 @@
-#include "matrix.cpp"
+#include "matrix.h"
 #include <iostream>
 
 
@@ -172,6 +172,8 @@ int main() {
     } else {
         std::cout<<"NIE";
     }  
+
+    std::cout << "\nWe wszystkich powyzszych metodach byl uzywany friend ostream& operator<<(ostream&o, matrix& m) do wypisywania macierzy\n";
 
     return 0;
 }

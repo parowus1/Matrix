@@ -159,7 +159,7 @@ int main() {
     }    
 
     t18.wstaw(0,0,-1);
-    std::cout << "\nDodanie jednego elementu mniejszego do T18: Czy T17 > T18\n";
+    std::cout << "\nDodanie jednego elementu mniejszego do T18: Czy T17 > T18\nNie kazdy element spelnia nierwownosc.\n";
     if(t17 > t18) {
         std::cout<<"TAK";
     } else {
@@ -172,6 +172,15 @@ int main() {
     } else {
         std::cout<<"NIE";
     }  
+
+
+    std::cout << "\nMacierze jak w poprzednim, ale T18--: Czy T17 > T18\nKazdy element spelnia nierwownosc.\n";
+    t18--;
+    if(t17 > t18) {
+        std::cout<<"TAK";
+    } else {
+        std::cout<<"NIE";
+    }
 
     std::cout << "\nWe wszystkich powyzszych metodach byl uzywany friend ostream& operator<<(ostream&o, matrix& m) do wypisywania macierzy\n";
 

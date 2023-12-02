@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include <stdexcept>
 
 matrix& matrix::alokuj(int n) {
     if (data == nullptr) {
@@ -51,7 +52,7 @@ matrix& matrix::alokuj(int n) {
         }
         else {
             // Tu mo�na doda� obs�ug� b��du
-            return -1;
+            throw std::out_of_range("Matrix indices are out of range");
         }
     }
 
@@ -217,8 +218,8 @@ matrix& matrix::dowroc() {
 
     matrix& matrix::operator+(matrix& m) {
     if (size != m.size) {
-        // Obsługa błędu: Macierze muszą być tego samego rozmiaru
-        // Możesz wyrzucić wyjątek, zwrócić błąd lub inaczej obsłużyć tę sytuację
+        // Throw an exception
+        throw std::invalid_argument("Matrices must be the same size for addition");
     } else {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
@@ -264,10 +265,9 @@ matrix operator*(int a, const matrix& m) {
 
     matrix matrix::operator*(const matrix& m) const {
         if (size != m.size) {
-            // Handle the error: Matrices must have appropriate sizes for multiplication
-            // You can throw an exception, return an error, or handle it differently
-            // Here, return an empty matrix or another error representation
-            return matrix(0);
+            // Throw an exception
+            throw std::invalid_argument("Matrices must have appropriate sizes for multiplication");
+
         } else {
             matrix result(size);
 
@@ -382,35 +382,50 @@ matrix& matrix::operator*=(int a) {
         return true;
     }
 
-    bool matrix::operator>(const matrix& m) {
-        // Assuming a matrix is greater if the sum of its elements is greater
-        int sumThis = 0;
-        int sumOther = 0;
-
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                sumThis += data[i][j];
-                sumOther += m.data[i][j];
-            }
-        }
-
-        return sumThis > sumOther;
+bool matrix::operator>(const matrix& m) {
+    if (size != m.size) {
+        // Throw an exception
+        throw std::invalid_argument("Matrices must be the same size for comparison");
     }
 
-    bool matrix::operator<(const matrix& m) {
-        // Assuming a matrix is smaller if the sum of its elements is smaller
-        int sumThis = 0;
-        int sumOther = 0;
+    bool isGreater = true;
 
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                sumThis += data[i][j];
-                sumOther += m.data[i][j];
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (data[i][j] <= m.data[i][j]) {
+                isGreater = false;
+                break;
             }
         }
-
-        return sumThis < sumOther;
+        if (!isGreater) {
+            break;
+        }
     }
+
+    return isGreater;
+}
+
+bool matrix::operator<(const matrix& m) {
+    if (size != m.size) {
+        // Throw an exception
+        throw std::invalid_argument("Matrices must be the same size for comparison");
+    }
+    bool isLess = true;
+
+    for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; ++j) {
+            if (data[i][j] >= m.data[i][j]) {
+                isLess = false;
+                break;
+            }
+        }
+        if (!isLess) {
+            break;
+        }
+    }
+
+    return isLess;
+}
 
     std::ostream& operator<<(std::ostream& o, matrix& m) {
     for (int i = 0; i < m.size; ++i) {

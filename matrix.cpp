@@ -3,19 +3,19 @@
 
 matrix& matrix::alokuj(int n) {
     if (data == nullptr) {
-        // Macierz nie ma jeszcze zaalokowanej pamięci, alokuj ją w żądanym rozmiarze
+        // Macierz nie ma jeszcze zaalokowanej pamieci, alokuj ja w zadanym rozmiarze
         size = n;
         data = new int*[size];
         for (int i = 0; i < size; ++i) {
             data[i] = new int[size];
-            // Inicjowanie wartości elementów macierzy na zero
+            // Inicjowanie wartości elementow macierzy na zero
             for (int j = 0; j < size; ++j) {
                 data[i][j] = 0;
             }
         }
     } else {
         if (size != n) {
-            // Macierz ma zaalokowaną pamięć, ale inny rozmiar, zwolnij i zaalokuj ponownie
+            // Macierz ma zaalokowana pamiec, ale inny rozmiar, zwolnij i zaalokuj ponownie
             for (int i = 0; i < size; ++i) {
                 delete[] data[i];
             }
@@ -25,13 +25,13 @@ matrix& matrix::alokuj(int n) {
             data = new int*[size];
             for (int i = 0; i < size; ++i) {
                 data[i] = new int[size];
-                // Inicjowanie wartości elementów macierzy na zero
+                // Inicjowanie wartości elementow macierzy na zero
                 for (int j = 0; j < size; ++j) {
                     data[i][j] = 0;
                 }
             }
         } else {
-            // Macierz ma zaalokowaną pamięć i jest odpowiedniego rozmiaru, nie rób nic
+            // Macierz ma zaalokowana pamiec i jest odpowiedniego rozmiaru, nie rob nic
             return *this;
         }
     }
@@ -52,7 +52,7 @@ matrix& matrix::alokuj(int n) {
         }
         else {
             // Tu mo�na doda� obs�ug� b��du
-            throw std::out_of_range("Matrix indices are out of range");
+            throw std::out_of_range("Indeksy macierzy sa poza zakresem.");
         }
     }
 
@@ -206,7 +206,7 @@ matrix& matrix::dowroc() {
     }
 
     matrix operator+(int a, matrix& m){
-    // Tworzymy nową macierz, aby nie zmieniać oryginalnej
+    // Tworzymy nowa macierz, aby nie zmieniac oryginalnej
     matrix result = m;
     for (int i = 0; i < m.size; ++i) {
         for (int j = 0; j < m.size; ++j) {
@@ -219,7 +219,7 @@ matrix& matrix::dowroc() {
     matrix& matrix::operator+(matrix& m) {
     if (size != m.size) {
         // Throw an exception
-        throw std::invalid_argument("Matrices must be the same size for addition");
+        throw std::invalid_argument("Macierze musza miec takie same rozmiary, aby mozna bylo je dodawac.");
     } else {
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
@@ -244,7 +244,7 @@ matrix& matrix::dowroc() {
     matrix& matrix::operator+(double a) {
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
-            data[i][j] += static_cast<int>(a); // Rzutujemy na int, aby zachować spójność z typem macierzy
+            data[i][j] += static_cast<int>(a); // Rzutujemy na int, aby zachowac spojnośc z typem macierzy
         }
     }
     return *this;
@@ -266,7 +266,7 @@ matrix operator*(int a, const matrix& m) {
     matrix matrix::operator*(const matrix& m) const {
         if (size != m.size) {
             // Throw an exception
-            throw std::invalid_argument("Matrices must have appropriate sizes for multiplication");
+            throw std::invalid_argument("Macierze musza miec odpowiednie rozmiary do przemnozenia.");
 
         } else {
             matrix result(size);
@@ -385,7 +385,7 @@ matrix& matrix::operator*=(int a) {
 bool matrix::operator>(const matrix& m) {
     if (size != m.size) {
         // Throw an exception
-        throw std::invalid_argument("Matrices must be the same size for comparison");
+        throw std::invalid_argument("Macierze musza miec takie same rozmiary do porownania.");
     }
 
     bool isGreater = true;
@@ -408,7 +408,7 @@ bool matrix::operator>(const matrix& m) {
 bool matrix::operator<(const matrix& m) {
     if (size != m.size) {
         // Throw an exception
-        throw std::invalid_argument("Matrices must be the same size for comparison");
+        throw std::invalid_argument("Macierze musza miec takie same rozmiary do porownania.");
     }
     bool isLess = true;
 

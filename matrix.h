@@ -34,6 +34,7 @@ public:
             delete[] data;
         }
     }
+    
 
     matrix& alokuj(int n);
     matrix& wstaw(int x, int y, int wartosc);

@@ -71,10 +71,10 @@ int main() {
     t3.losuj();
 
     matrix t4(30);
-    t4.szachownica();
+    //t4.alokuj();
 
     t3 = t3 * t4;
-    std::cout << "\nT3 - iloczyn dwoch matryc, jednej z szachownica i drugiej z liczbami losowymi \n" << t3;
+    std::cout << "\nT3 - iloczyn dwoch matryc, jednej z samymi zerami i drugiej z liczbami losowymi \n" << t3;
 
     matrix t5(30);
     t5.nad_przekatna();

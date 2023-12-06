@@ -1,5 +1,10 @@
 #include "matrix.h"
 #include <stdexcept>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+
 
 matrix& matrix::alokuj(int n) {
     if (data == nullptr) {
@@ -435,6 +440,51 @@ bool matrix::operator<(const matrix& m) {
         o << std::endl;
     }
     return o;
+}
+
+void matrix::wczytajMacierzZPliku(const std::string& nazwaPliku) {
+    std::ifstream plik(nazwaPliku);
+
+    if (!plik.is_open()) {
+        throw std::runtime_error("Nie można otworzyć pliku: " + nazwaPliku);
+    }
+
+        // Zwolnienie pamięci, jeśli została już zaalokowana
+    if (data != nullptr) {
+        for (int i = 0; i < size; ++i) {
+            delete[] data[i];
+        }
+        delete[] data;
+    }
+
+    std::vector<std::vector<int>> tempData;
+    std::string linia;
+    while (std::getline(plik, linia)) {
+        std::vector<int> wiersz;
+        std::stringstream ss(linia);
+        int liczba;
+
+        while (ss >> liczba) {
+            wiersz.push_back(liczba);
+        }
+
+        if (!ss.eof()) {
+            throw std::runtime_error("Nieprawidłowy format danych w pliku: " + nazwaPliku);
+        }
+
+        tempData.push_back(wiersz);
+    }
+
+    size = tempData.size();
+    data = new int*[size];
+    for (int i = 0; i < size; ++i) {
+        data[i] = new int[size];
+        for (int j = 0; j < size; ++j) {
+            data[i][j] = tempData[i][j];
+        }
+    }
+
+    plik.close();
 }
 
 // matrix& dowroc() { // takie co odwraca kolumnami

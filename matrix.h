@@ -1,7 +1,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-
+#include <stdexcept>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
 
 class matrix {
 private:
@@ -69,6 +73,8 @@ public:
     bool operator>(const matrix& m);
     bool operator<(const matrix& m);
     friend std::ostream& operator<<(std::ostream& o, matrix& m);
+
+    void wczytajMacierzZPliku(const std::string& nazwaPliku);
 };
 
 

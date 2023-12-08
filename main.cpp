@@ -185,10 +185,12 @@ int main() {
     std::cout << "\nWe wszystkich powyzszych metodach byl uzywany friend ostream& operator<<(ostream&o, matrix& m) do wypisywania macierzy\n";
 
 
-    std::cout << "\nOdczyt malej macierzy z pliku\n";
+    std::cout << "\nOdczyt malej macierzy z pliku:\n";
+    std::string zmiennaPlikowa = "";
+    std::cin >> zmiennaPlikowa;
     matrix t19;
-    t19.wczytajMacierzZPliku("tabliczka_mnozenia.txt");
-    std::cout <<  t19;
+    t19.wczytajMacierzZPliku(zmiennaPlikowa);
+    std::cout << t19;
 
     return 0;
 }

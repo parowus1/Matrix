@@ -446,7 +446,7 @@ void matrix::wczytajMacierzZPliku(const std::string& nazwaPliku) {
     std::ifstream plik(nazwaPliku);
 
     if (!plik.is_open()) {
-        throw std::runtime_error("Nie można otworzyć pliku: " + nazwaPliku);
+        throw std::runtime_error("Nie można otworzyc pliku: " + nazwaPliku);
     }
 
         // Zwolnienie pamięci, jeśli została już zaalokowana
